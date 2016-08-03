@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ profiles -P | grep -c bushel -ne 0]; then
+if ( /usr/bin/profiles -P | /usr/bin/grep -q bushel ); then
   echo "Profile Exists"
 else
-  echo "Profile does not exist"
+  open -a safari https://sl.bushel.com
 fi
