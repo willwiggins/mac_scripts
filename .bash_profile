@@ -1,0 +1,5 @@
+alias gam="/Users/willwiggins/bin/gam/gam"
+alias nfo="/Users/willwiggins/bin/gam/gam info user"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
