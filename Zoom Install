@@ -1,0 +1,17 @@
+#!/bin/sh
+
+pkgfile="zoominstall.pkg"
+logfile="/Library/Logs/ZoomInstallScript.log"
+
+url='https://zoom.us/client/latest/ZoomInstallerIT.pkg'
+
+/bin/echo "--" >> ${logfile}
+/bin/echo "`date`: Downloading latest version." >> ${logfile}
+/usr/bin/curl -L -o /usr/local/percolate/${pkgfile} ${url}
+/bin/echo "`date`: Installing..." >> ${logfile}
+/usr/sbin/installer -pkg /usr/local/foldernameyouwant/${pkgfile} -target /
+/bin/sleep 10
+/bin/echo "`date`: Deleting package." >> ${logfile}
+/bin/rm /usr/local/foldernameyouwant/"${pkgfile}"
+
+exit 0
