@@ -1,0 +1,46 @@
+#!/bin/sh
+user=$1
+
+# Sets Authentication token to variable
+TOKEN=<INSERT SCIM TOKEN HERE>
+
+# Gets list of users
+curl --request GET \
+  --url 'https://scim.frontapp.com/v2/Users' \
+  --header 'Accept: application/scim+json' \
+  --header "Authorization: Bearer $TOKEN" \
+  > test.json
+
+# Gets String that contains users id
+USER_ID_TEMP=$(egrep -o '.{0,170}"'${user}'@salesloft.com"' test.json)
+
+# Gets User ID and  Sets to Variable
+USER_ID=$(echo "$USER_ID_TEMP" \
+| grep -o '"id": *"[^"]*"' \
+| grep -o '"[^"]*"$' \
+| tr -d '"'
+)
+# Just for troubleshooting to verify variable contents
+ECHO "TEMP USER ID IS" $USER_ID_TEMP
+ECHO "USER ID IS" $USER_ID
+
+echo "Listing User"
+curl --request GET \
+  --url "https://scim.frontapp.com/v2/Users/$USER_ID" \
+  --header 'Accept: application/scim+json' \
+  --header "Authorization: Bearer $TOKEN"
+
+  echo "Revoking Access"
+    curl --request PUT \
+      --url "https://scim.frontapp.com/v2/Users/$USER_ID" \
+      --header 'Accept: application/scim+json' \
+      --header "Authorization: Bearer $TOKEN" \
+      --header 'Content-Type: application/scim+json' \
+      --data '{
+        "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:User"
+        ],
+        "id": '\"$USER_ID\"',
+        "active": false
+    }'
+    echo "Access Revoked"
