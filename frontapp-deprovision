@@ -1,8 +1,12 @@
 #!/bin/sh
+# This script is used to deprovision a user in Front App by using the Front SCIM APIs
+# API Docs: https://documenter.getpostman.com/view/1614368/RVfsHZ6o#eeca7798-dde8-3621-b55e-d2ff1e2b667b
+
+# Pass username while running the script, i.e. bash script.sh username
 user=$1
 
 # Sets Authentication token to variable
-TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsic2NpbSJdLCJpc3MiOiJmcm9udCIsInN1YiI6InNhbGVzbG9mdDIifQ.Nfu17Q0QwvabQzFWG5xC5APHyEfQv3XklsE3OUyqmF4
+TOKEN=<insert token here>
 
 # Gets list of users
 USERS=$(curl --request GET \
