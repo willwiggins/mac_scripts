@@ -1,21 +1,18 @@
 #!/bin/sh
-# This script is used to deprovision a user in Front App via their SCIM API
-
-# Pass the username as an argument when launching script
 user=$1
 
 # Sets Authentication token to variable
-TOKEN=<INSERT SCIM TOKEN HERE>
+TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsic2NpbSJdLCJpc3MiOiJmcm9udCIsInN1YiI6InNhbGVzbG9mdDIifQ.Nfu17Q0QwvabQzFWG5xC5APHyEfQv3XklsE3OUyqmF4
 
 # Gets list of users
-curl --request GET \
+USERS=$(curl --request GET \
   --url 'https://scim.frontapp.com/v2/Users' \
   --header 'Accept: application/scim+json' \
   --header "Authorization: Bearer $TOKEN" \
-  > test.json
+  )
 
 # Gets String that contains users id
-USER_ID_TEMP=$(egrep -o '.{0,170}"'${user}'@salesloft.com"' test.json)
+USER_ID_TEMP=$(echo $USERS | egrep -o '.{0,170}"'${user}'@salesloft.com"')
 
 # Gets User ID and  Sets to Variable
 USER_ID=$(echo "$USER_ID_TEMP" \
@@ -46,4 +43,3 @@ curl --request GET \
         "id": '\"$USER_ID\"',
         "active": false
     }'
-    echo "Access Revoked"
