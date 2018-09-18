@@ -1,4 +1,7 @@
 #!/bin/sh
+# This script is used to deprovision a user in Front App via their SCIM API
+
+# Pass the username as an argument when launching script
 user=$1
 
 # Sets Authentication token to variable
