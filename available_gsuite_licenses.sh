@@ -1,3 +1,5 @@
+# This script uses GAM to check on current G-Suite Enterprise License usage and will alert via Slack Webhook if the count is under the set threshold
+
 #!/bin/bash
 # Sets GAM Path shortcut to default location
 gam="$HOME/bin/gam/gam"
