@@ -1,5 +1,5 @@
 #!/bin/bash
-# Sets GAM Path shortcut
+# Sets GAM Path shortcut to default location
 gam="$HOME/bin/gam/gam"
 # Add your Slack Incoming Webhook URL Below
 slack_webhook_url="https://hooks.slack.com/services/..."
