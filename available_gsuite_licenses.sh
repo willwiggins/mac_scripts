@@ -17,7 +17,7 @@ echo $available_licenses "G Suite Licenses Available"
 
 if [ $available_licenses -lt $license_threshold ] 
 then
-    curl -X POST -H 'Content-type: application/json' --data "$(eval "echo "'{\"text\": \"$available_licenses G Suite User Licenses Available\"}'"")" $slack_webhook_url
+    curl -X POST -H 'Content-type: application/json' --data "$(eval "echo "'{\"text\": \"$available_licenses G Suite Licenses Available\"}'"")" $slack_webhook_url
 else
     echo $available_licenses "Available licenses exceeds the set threshold of" $license_threshold". No Slack notification will be sent"
 fi
