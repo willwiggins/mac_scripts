@@ -3,9 +3,11 @@
 gam="$HOME/bin/gam/gam"
 # Add your Slack Incoming Webhook URL Below
 slack_webhook_url="https://hooks.slack.com/services/..."
-
 # Set threshold to send slack notifications if less then this
 license_threshold="5"
+
+# End of settings that need configured
+
 echo "License threshold set to" $license_threshold". Slack notification will be sent if available licenses is less than this."
 # Find license count and user count for G Suite Enterprise Licenses
 license_count=$($gam info domain | grep 'G Suite Enterprise Licenses' | tr -cd '0-9')
