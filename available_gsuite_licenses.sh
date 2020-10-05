@@ -1,7 +1,7 @@
 # This script uses GAM to check on current G-Suite Enterprise License usage and will alert via Slack Webhook if the count is under the set threshold
 
 #!/bin/bash
-# Sets GAM Path shortcut to default location
+# Sets GAM Path shortcut to default location.  Will want to change this to an exact location if running via a service
 gam="$HOME/bin/gam/gam"
 # Add your Slack Incoming Webhook URL Below
 slack_webhook_url="https://hooks.slack.com/services/..."
